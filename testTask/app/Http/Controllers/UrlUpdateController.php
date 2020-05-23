@@ -16,11 +16,11 @@ class UrlUpdateController extends Controller
         return view('main', compact('cutUrls'));           
     }
 
-    public function store(StoreDataInterface $serviceStore,UrlValidateRequest $requestDb)
+    public function store(StoreDataInterface $serviceStore,UrlValidateRequest $requestForm)
     {
-        $res = $requestDb->input('sourceUrl');
+        $resultRequest = $requestForm->input('sourceUrl');
         //dd($res);
-        $serviceStore->store($res);
+        $serviceStore->store($resultRequest);
        // dd('this');
         return redirect() -> route('home');
     }

@@ -10,13 +10,7 @@ class StoreDataService implements StoreDataInterface
 {
     public function store($request)
     {
-            // $new->url = $request;
-            // $new->hash = $this->getRandHash(4);    
-            // $new->save();
-            // $this->insert($request);
-            // $this->update($request);
-            
-            CutUrlModel::updateOrCreate(
+                        CutUrlModel::updateOrCreate(
                 ['url' => $request],
                 [
                     'hash'       => $this->getRandHash(4),
@@ -24,20 +18,6 @@ class StoreDataService implements StoreDataInterface
                 ]
         );             
     }
-
-    // protected function update($url)
-    // {
-    //     CutUrlModel::where('url', $url)
-    //                 ->update(['hash' => $this->getRandHash(4)]);
-
-    // }
-    // protected function insert($url)
-    // {
-    //     CutUrlModel::create([
-    //         'url' => $url,
-    //         'hash' => $this->getRandHash(4)
-    //     ]);
-    // }
 
     protected function getRandHash($rand)
     {

@@ -11,18 +11,18 @@ class UrlRedirectController extends Controller
     //
     public function redirect($redirectUrlHash)
     {
-        $url = CutUrlModel::where('hash',$redirectUrlHash) -> first();
-      
-        DB::table('cut_url_models')->decrement('usingCount');
-        $usingCountFromDb = CutUrlModel::where('usingCount') -> get();
-        if(count($usingCountFromDb) > 0)
-        {
-            return redirect($url->url);
-        }
-        else
-        {
-            return abort(404);  
+        $url = CutUrlModel::where('hash',$redirectUrlHash) ->first();
+        CutUrlModel::where('hash',$redirectUrlHash)->update(['usingCount' =>DB::raw('usingCount - 1')]);
+        //dd('thg');
+        return redirect($url->url);
+        
+     
+     
+     //   $usingCountFromDb = CutUrlModel::where('usingCount') -> get();
+     
+           
+       
+           // return abort(404);  
          
-        }    
     }
 }
