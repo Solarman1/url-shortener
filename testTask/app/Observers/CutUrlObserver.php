@@ -54,7 +54,7 @@ class CutUrlObserver
     public function deleting(CutUrlModel $cutUrlModel)
     {
         //
-        dd(__METHOD__, $cutUrlModel);
+        //dd(__METHOD__, $cutUrlModel);
     }
 
     /**
@@ -77,7 +77,7 @@ class CutUrlObserver
     public function restored(CutUrlModel $cutUrlModel)
     {
         //
-        dd('restored');
+        //dd('restored');
     }
 
     /**

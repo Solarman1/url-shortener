@@ -15,7 +15,10 @@
                                 <tbody>
                                     @foreach($cutUrls as $row)
                                      <p>
-                                        <a href="{{route('redirect', $row->hash)}}" target="_blank">{{ route('redirect', $row->hash) }}</a> links to {{$row->url}}
+                                        <a href="{{route('redirect', $row->hash)}}" target="_blank">
+                                            {{ route('redirect', $row->hash) }}
+                                        </a>
+                                             links to {{$row->url}}
                                      </p>
                                     @endforeach  
                                 </tbody>                         

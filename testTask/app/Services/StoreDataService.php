@@ -10,13 +10,18 @@ class StoreDataService implements StoreDataInterface
 {
     public function store($request)
     {
-                        CutUrlModel::updateOrCreate(
-                ['url' => $request],
-                [
-                    'hash'       => $this->getRandHash(4),
-                    'usingCount' => 5
-                ]
-        );             
+        // CutUrlModel::updateOrCreate(
+        //         ['url' => $request],
+        //         [
+        //             'hash'       => $this->getRandHash(4),
+        //             'usingCount' => 5
+        //         ]
+        // );
+        CutUrlModel::create(
+            ['url' => $request,
+            'hash' => $this->getRandHash(4),
+            'usingCount' => 5
+            ]);             
     }
 
     protected function getRandHash($rand)
