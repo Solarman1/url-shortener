@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repository\RedirectRepository;
+use App\Repository\Interfaces\RedirectRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,10 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind(
+            RedirectRepositoryInterface::class, 
+            RedirectRepository::class
+        );
     }
 
     /**

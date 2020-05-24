@@ -3,26 +3,29 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\CutUrlModel;
-use Illuminate\Support\Facades\DB;
+use App\Repository\Interfaces\RedirectRepositoryInterface;
+
 
 class UrlRedirectController extends Controller
 {
+    protected $getRedirectHash;
     //
+    public function __construct(RedirectRepositoryInterface $getRedirectHash)
+    {
+        $this-> getRedirectHash = $getRedirectHash;
+    }
+
     public function redirect($redirectUrlHash)
     {
-        $url = CutUrlModel::where('hash',$redirectUrlHash) ->first();
-        CutUrlModel::where('hash',$redirectUrlHash)->update(['usingCount' =>DB::raw('usingCount - 1')]);
+        $url = $this->getRedirectHash->getHash($redirectUrlHash);
         //dd('thg');
-        return redirect($url->url);
+        $countUsing = $this->getRedirectHash->getCount($redirectUrlHash);
         
-     
-     
-     //   $usingCountFromDb = CutUrlModel::where('usingCount') -> get();
+        if($countUsing >= 0)
+            return redirect($url->url);
+        else
+        return redirect(abort(404));
      
            
-       
-           // return abort(404);  
-         
     }
 }
